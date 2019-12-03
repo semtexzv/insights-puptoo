@@ -125,7 +125,8 @@ def system_profile(hostname, cpu_info, virt_what, meminfo, ip_addr, dmidecode,
         for yum_repo_file in yum_repos_d:
             for yum_repo_definition in yum_repo_file:
                 baseurl = yum_repo_file[yum_repo_definition].get('baseurl', [])
-                repo = {'name': yum_repo_file[yum_repo_definition].get('name'),
+                repo = {'id': yum_repo_definition,
+                        'name': yum_repo_file[yum_repo_definition].get('name'),
                         'base_url': baseurl[0] if len(baseurl) > 0 else None,
                         'enabled': _to_bool(yum_repo_file[yum_repo_definition].get('enabled')),
                         'gpgcheck': _to_bool(yum_repo_file[yum_repo_definition].get('gpgcheck'))}
